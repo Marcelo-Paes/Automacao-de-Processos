@@ -1,36 +1,34 @@
-Automação de Tarefas com PyAutoGUI e Monitoramento de Interrupção
-Título: Automação de Tarefas com PyAutoGUI e Monitoramento de Interrupção em Python
-Este código foi criado para automatizar uma sequência de tarefas na tela do computador usando a biblioteca PyAutoGUI. Ele é projetado para realizar cliques, pressionar teclas, copiar e colar texto, além de procurar e clicar em cores específicas na tela. A automação pode ser interrompida a qualquer momento pelo usuário pressionando a tecla "Esc". Abaixo está a descrição detalhada de cada parte do código:
+### Descrição do Código: Automação de Tarefas com PyAutoGUI e Monitoramento de Interrupção
 
-1. Importações Necessárias
-pyautogui: Usada para controlar o mouse e o teclado, permitindo a automação de cliques e pressionamento de teclas.
-time: Utilizada para adicionar pausas entre as ações da automação.
-PIL.ImageGrab: Utilizada para capturar a tela e procurar por cores específicas.
-threading: Usada para executar a função de monitoramento da tecla "Esc" em uma thread separada.
-keyboard: Utilizada para detectar quando a tecla "Esc" é pressionada, permitindo interromper a automação.
-2. Função de Monitoramento da Tecla "Esc" (check_for_esc)
-Esta função roda em uma thread separada e continuamente verifica se a tecla "Esc" foi pressionada. Se detectada, a automação é interrompida, definindo a variável global stop_thread como True.
+#### **Título: Automação de Tarefas com PyAutoGUI e Monitoramento de Interrupção em Python**
 
-3. Função de Procura de Cor e Clique (find_color_and_click2)
-Esta função captura a tela e procura por uma cor específica definida pelo usuário (target_rgb). Se a cor for encontrada dentro de uma tolerância definida, o mouse clica na posição da cor. A função pode ser interrompida se stop_thread estiver definida como True.
+Este código foi criado para automatizar uma sequência de tarefas na tela do computador usando a biblioteca **PyAutoGUI**. Ele é projetado para realizar cliques, pressionar teclas, copiar e colar texto, além de procurar e clicar em cores específicas na tela. A automação pode ser interrompida a qualquer momento pelo usuário pressionando a tecla "Esc". Abaixo está a descrição detalhada de cada parte do código:
 
-4. Função Principal de Automação (run_automation)
-Atrasos Iniciais: A função começa aguardando 3 segundos antes de iniciar a automação, dando tempo ao usuário para preparar a tela.
-Sequência de Ações: A função realiza várias ações em sequência, como copiar texto, clicar em coordenadas específicas da tela, procurar cores e pressionar teclas.
-Busca de Cor e Clique: Em vários pontos, o código procura por cores específicas na tela e clica nelas.
-Pressionamento de Teclas: A função simula pressionamentos de teclas como "Ctrl + C", "Ctrl + V", e navegação usando setas e outras teclas.
-Busca e Clique em Cor Alternativa: Uma segunda cor é procurada e clicada usando a função find_color_and_click2.
-5. Monitoramento de Interrupção
-Thread de Monitoramento: A thread esc_thread é iniciada para monitorar a tecla "Esc".
-Repetição da Automação: A automação é configurada para rodar duas vezes, com verificação da variável stop_thread entre as iterações.
-6. Conclusão
+#### **1. Importações Necessárias**
+- **`pyautogui`**: Usada para controlar o mouse e o teclado, permitindo a automação de cliques e pressionamento de teclas.
+- **`time`**: Utilizada para adicionar pausas entre as ações da automação.
+- **`PIL.ImageGrab`**: Utilizada para capturar a tela e procurar por cores específicas.
+- **`threading`**: Usada para executar a função de monitoramento da tecla "Esc" em uma thread separada.
+- **`keyboard`**: Utilizada para detectar quando a tecla "Esc" é pressionada, permitindo interromper a automação.
+
+#### **2. Função de Monitoramento da Tecla "Esc" (`check_for_esc`)**
+Esta função roda em uma thread separada e continuamente verifica se a tecla "Esc" foi pressionada. Se detectada, a automação é interrompida, definindo a variável global `stop_thread` como `True`.
+
+#### **3. Função de Procura de Cor e Clique (`find_color_and_click2`)**
+Esta função captura a tela e procura por uma cor específica definida pelo usuário (`target_rgb`). Se a cor for encontrada dentro de uma tolerância definida, o mouse clica na posição da cor. A função pode ser interrompida se `stop_thread` estiver definida como `True`.
+
+#### **4. Função Principal de Automação (`run_automation`)**
+- **Atrasos Iniciais**: A função começa aguardando 3 segundos antes de iniciar a automação, dando tempo ao usuário para preparar a tela.
+- **Sequência de Ações**: A função realiza várias ações em sequência, como copiar texto, clicar em coordenadas específicas da tela, procurar cores e pressionar teclas.
+- **Busca de Cor e Clique**: Em vários pontos, o código procura por cores específicas na tela e clica nelas.
+- **Pressionamento de Teclas**: A função simula pressionamentos de teclas como "Ctrl + C", "Ctrl + V", e navegação usando setas e outras teclas.
+- **Busca e Clique em Cor Alternativa**: Uma segunda cor é procurada e clicada usando a função `find_color_and_click2`.
+
+#### **5. Monitoramento de Interrupção**
+- **Thread de Monitoramento**: A thread `esc_thread` é iniciada para monitorar a tecla "Esc".
+- **Repetição da Automação**: A automação é configurada para rodar duas vezes, com verificação da variável `stop_thread` entre as iterações.
+
+#### **6. Conclusão**
 Ao final, o código verifica se a automação foi concluída ou interrompida e exibe uma mensagem indicando o estado final.
 
 Este script é útil para automatizar tarefas repetitivas e inclui um mecanismo de segurança para interromper o processo caso o usuário deseje.
-
-
-
-
-
-
-
