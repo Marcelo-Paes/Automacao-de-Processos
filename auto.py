@@ -4,9 +4,10 @@ from PIL import ImageGrab
 import threading
 import keyboard
 
-# Variável global para controlar a interrupção
+# Variável global para controlar a interrupção da automação
 stop_thread = False
 
+# Função para monitorar a tecla "Esc" e interromper a automação
 def check_for_esc():
     global stop_thread
     while True:
@@ -16,26 +17,31 @@ def check_for_esc():
             break
         time.sleep(0.1)
 
+# Função para encontrar uma cor específica na tela e clicar nela
 def find_color_and_click2(target_rgb, tolerance=10):
     global stop_thread
     if stop_thread:
         return
 
+    # Captura a tela inteira
     screen = ImageGrab.grab()
     width, height = screen.size
 
+    # Varre os pixels da tela procurando pela cor alvo
     for x in range(width):
         for y in range(height):
             if stop_thread:
                 return
 
             color = screen.getpixel((x, y))
+            # Verifica se a cor do pixel está dentro da tolerância definida
             if all(abs(color[i] - target_rgb[i]) <= tolerance for i in range(3)):
                 pyautogui.click(x, y)
                 print(f'Clicked at ({x}, {y})')
                 return
     print("Cor não encontrada na tela.")
 
+# Função principal que executa a automação
 def run_automation():
     global stop_thread
 
@@ -49,76 +55,59 @@ def run_automation():
     if stop_thread:
         return
 
-    # Simula pressionar Ctrl + C (Copiar)
+    # Copia (Ctrl + C) e realiza uma sequência de cliques e atalhos de teclado
     pyautogui.hotkey('ctrl', 'c')
     time.sleep(1)
 
-    if stop_thread:
-        return
-
-    # Clica na coordenada (674, 22)
     pyautogui.click(674, 22)
     time.sleep(1)
 
-    # Clica na coordenada (384, 449)
     pyautogui.click(384, 449)
     time.sleep(1)
 
-    # Clica na coordenada (550, 824)
     pyautogui.click(550, 824)
     time.sleep(1)
 
-    # Simula pressionar Ctrl + A (Selecionar tudo)
     pyautogui.hotkey('ctrl', 'a')
     time.sleep(1)
 
-    # Simula pressionar Ctrl + V (Colar)
     pyautogui.hotkey('ctrl', 'v')
     time.sleep(1)
 
     if stop_thread:
         return
 
-    # Pressiona Enter
     pyautogui.press('enter')
     time.sleep(2)
 
     if stop_thread:
         return
 
-    # Clica na coordenada (437, 23)
     pyautogui.click(437, 23)
     time.sleep(1)
 
-    # Pressiona duas vezes a tecla da seta direita
     pyautogui.press('right', presses=2, interval=0.5)
     time.sleep(1)
 
-    # Simula pressionar Ctrl + C (Copiar)
     pyautogui.hotkey('ctrl', 'c')
     time.sleep(1)
 
-    if stop_thread:
-        return
-
-    # Clica na coordenada (674, 22)
     pyautogui.click(674, 22)
     time.sleep(1)
 
-    # Simula pressionar Ctrl + F (Procurar)
     pyautogui.hotkey('ctrl', 'f')
     time.sleep(1)
 
-    # Simula pressionar Ctrl + V (Colar)
     pyautogui.hotkey('ctrl', 'v')
     time.sleep(1)
 
     # Define a cor que você quer procurar (em RGB)
-    target_color = (255, 150, 50)  # Exemplo: Cor vermelha
+    target_color = (255, 150, 50)  # Exemplo: Cor laranja
 
-    # Define a área da tela para procurar a cor (x1, y1, x2, y2)
+    # Define a área da tela para procurar a cor
     region = (0, 0, 1920, 1080)  # Área completa da tela
 
+    # Função para procurar a cor dentro de uma área específica da tela
     def find_color_and_click(target_color, region):
         global stop_thread
         if stop_thread:
@@ -127,7 +116,7 @@ def run_automation():
         # Captura a área especificada da tela
         screenshot = ImageGrab.grab(bbox=region)
 
-        # Percorre os pixels da imagem capturada
+        # Varre os pixels da área capturada
         for x in range(screenshot.width):
             for y in range(screenshot.height):
                 if stop_thread:
@@ -135,11 +124,9 @@ def run_automation():
 
                 r, g, b = screenshot.getpixel((x, y))
                 if (r, g, b) == target_color:
-                    # Ajusta as coordenadas para a tela
+                    # Ajusta as coordenadas para a tela inteira
                     screen_x = x + region[0]
                     screen_y = y + region[1]
-
-                    # Clica na posição da cor encontrada
                     pyautogui.click(screen_x, screen_y)
                     print(f"Cor encontrada e clicada em: ({screen_x}, {screen_y})")
                     return
@@ -148,13 +135,13 @@ def run_automation():
     # Aguarda 2 segundos antes de começar a busca pela cor
     time.sleep(2)
 
-    # Executa a função de busca e clique
+    # Executa a busca e clique na cor definida
     find_color_and_click(target_color, region)
 
     if stop_thread:
         return
 
-    # Mantém pressionada a tecla END por 2 segundos
+    # Mantém pressionada a tecla "End" por 2 segundos
     time.sleep(2)
     pyautogui.keyDown('end')
     time.sleep(2)
@@ -164,27 +151,25 @@ def run_automation():
     if stop_thread:
         return
 
-    # Substitui a coordenada clicada anteriormente pela função find_color_and_click2
+    # Procura e clica em outra cor definida na tela
     time.sleep(1)
-    target_color2 = (0, 117, 255)
+    target_color2 = (0, 117, 255)  # Exemplo: Cor azul
     find_color_and_click2(target_color2)
 
     if stop_thread:
         return
 
-    # Simula pressionar Ctrl + F (Procurar)
+    # Busca e clica em botões "Salvar" e "Voltar" na tela
     pyautogui.hotkey('ctrl', 'f')
     time.sleep(1)
     pyautogui.write('Salvar')
     time.sleep(1)
 
-    # Executa a função de busca e clique
     find_color_and_click(target_color, region)
     time.sleep(2)
     pyautogui.click(1277, 204)
     time.sleep(1)
 
-    # Simula pressionar Ctrl + F (Procurar)
     pyautogui.hotkey('ctrl', 'f')
     time.sleep(1)
 
@@ -197,22 +182,19 @@ def run_automation():
     if stop_thread:
         return
 
-    # Pressiona a tecla da seta direita 3 vezes
+    # Navega no sistema pressionando teclas de seta e outros comandos
     pyautogui.press('right', presses=3, interval=0.5)
     time.sleep(0.5)
 
     if stop_thread:
         return
 
-    # Pressiona a tecla "x"
     pyautogui.press('x')
     time.sleep(0.5)
 
-    # Pressiona a tecla para baixo
     pyautogui.press('down')
     time.sleep(0.5)
 
-    # Pressiona a tecla da seta para esquerda 5 vezes
     pyautogui.press('left', presses=5, interval=0.3)
 
     print("Automação concluída.")
