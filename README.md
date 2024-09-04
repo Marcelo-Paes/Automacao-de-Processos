@@ -1,4 +1,4 @@
-Automação de Tarefas com PyAutoGUI e Monitoramento de Interrupção
+Descrição do Código: Automação de Tarefas com PyAutoGUI e Monitoramento de Interrupção
 Título: Automação de Tarefas com PyAutoGUI e Monitoramento de Interrupção em Python
 Este código foi criado para automatizar uma sequência de tarefas na tela do computador usando a biblioteca PyAutoGUI. Ele é projetado para realizar cliques, pressionar teclas, copiar e colar texto, além de procurar e clicar em cores específicas na tela. A automação pode ser interrompida a qualquer momento pelo usuário pressionando a tecla "Esc". Abaixo está a descrição detalhada de cada parte do código:
 
@@ -25,12 +25,3 @@ Thread de Monitoramento: A thread esc_thread é iniciada para monitorar a tecla 
 Repetição da Automação: A automação é configurada para rodar duas vezes, com verificação da variável stop_thread entre as iterações.
 6. Conclusão
 Ao final, o código verifica se a automação foi concluída ou interrompida e exibe uma mensagem indicando o estado final.
-
-Este script é útil para automatizar tarefas repetitivas e inclui um mecanismo de segurança para interromper o processo caso o usuário deseje.
-
-
-
-
-
-
-
