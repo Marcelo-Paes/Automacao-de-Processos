@@ -1,8 +1,8 @@
-# Automação com PyAutoGUI utilizando cores e coordenadas na tela
+# Automação de Interface Gráfica com PyAutoGUI
 
 Este aplicativo automatiza interações com a interface gráfica de um sistema, utilizando uma combinação de bibliotecas Python, incluindo `PyAutoGUI`, `Pillow`, `Keyboard`, e `Threading`. Ele é projetado para realizar uma série de ações em um aplicativo ou sistema, como cliques em locais específicos da tela, pressionamento de teclas, e monitoramento de eventos de teclado.
 
-## Funcionalidade
+## Funcionalidades
 
 - **Automação de CLIQUES e TECLAS**: O programa é capaz de simular cliques do mouse e pressionamento de teclas em pontos específicos da tela. Isso é feito para automatizar tarefas repetitivas ou que requerem interação com a interface gráfica de um software.
   
